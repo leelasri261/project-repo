@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local Guide</title>
+<style>
+  * { 
+      margin: 0; padding: 0;
+      box-sizing: border-box; 
+      font-family: Arial, sans-serif; 
+     }
+
+  body { 
+        background-color:#FFFFE0; 
+        color:#f5f5f5; 
+       }
+  header { 
+         text-align: center; 
+         padding: 2rem; 
+         background: #1f1f1f; 
+         box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+         }
+  header h1 {
+           font-size: 2rem; 
+           margin-bottom: 0.5rem;  
+           }
+  .search-bar { 
+       margin: 1rem auto; 
+       max-width: 600px; 
+       display: flex; 
+       }
+  .search-bar input { 
+           flex: 1; padding: 0.75rem; 
+            border: none; 
+            border-radius: 4px 0 0 4px; 
+            font-size: 1rem; 
+            background: #2a2a2a; 
+            color: #f5f5f5; 
+       }
+  .search-bar button { 
+            padding: 0.75rem 1rem; 
+            border: none; 
+            background: #4CAF50;
+            color: white; 
+            font-size: 1rem; 
+            border-radius: 0 4px 4px 0; 
+            cursor: pointer; 
+       }
+  .categories { 
+           display: flex; 
+           justify-content: center; 
+           gap: 10px; 
+           margin: 1.5rem 0;  
+           flex-wrap: wrap; 
+       }
+  .categories button { 
+          background: #333; 
+          border: none; 
+          padding: 0.5rem 1rem; 
+          border-radius: 20px; 
+          cursor: pointer; 
+          font-size: 0.95rem; 
+          color: #f5f5f5; 
+          transition: background 0.3s; 
+       }
+  .categories button:hover {
+          background: #555; 
+      }
+  .grid { 
+     display: grid; 
+     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+     gap: 1.5rem; 
+     padding: 1rem; 
+     max-width: 1200px; 
+     margin: auto; 
+   }
+  .card { 
+       background: #1e1e1e; 
+       border-radius: 8px; 
+       overflow: hidden; 
+       box-shadow: 0 4px 8px rgba(0,0,0,0.5); 
+       transition: transform 0.3s; 
+       cursor: pointer; 
+       text-decoration: none; 
+       color: inherit; 
+       display: block; 
+    }
+  .card img { 
+         width: 100%; 
+         height: 160px; 
+         object-fit: cover; 
+   }
+  .card-content {
+            padding: 1rem;
+     }
+  .card h3 {
+        font-size: 1.2rem; 
+        margin-bottom: 0.5rem; 
+     }
+  .card p { 
+          font-size: 0.95rem; 
+          color: #ccc; 
+      }
+  .card:hover { 
+       transform: translateY(-5px);
+      }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Your Destination Guide</h1>
+    <p>Explore attractions, food, stays & more in your region</p>
+   <div class="search-bar">
+  <input type="text" id="searchInput" placeholder="Search local spots...">
+  <select id="locationSelect">
+    <option value="all">All Locations</option>
+    <option value="downtown">Kakinada</option>
+    <option value="riverside">Rajahmundry</option>
+    <option value="mountains">Peddapuram</option>
+    <option value="villages">Samarlakota</option>
+    ====
+  </select>
+  <button onclick="filterCards()">Search</button>
+</div>
+    <div class="categories">
+      <button onclick="filterCategory('all')">All</button>
+      <button onclick="filterCategory('attractions')">Attractions</button>
+      <button onclick="filterCategory('food')">Food</button>
+      <button onclick="filterCategory('gatherings')">Gatherings</button>
+      <button onclick="filterCategory('stays')">Stays</button>
+      <button onclick="filterCategory('shopping')">Shopping</button>
+    </div>
+  </header>
+  <main>
+    <section class="grid" id="cardContainer">
+      
+
+      <a href="#" onclick="openDetails('Hidden Waterfall')" class="card" data-category="attractions"><img src="https://i.pinimg.com/736x/1a/09/58/1a095855130575203fc50d172f4660a9.jpg" alt="Attraction"><div class="card-content"><h3>Hidden Waterfall</h3><p>A serene spot away from the crowds.</p></div></a>
+
+
+      <a href="#" onclick="openDetails('Ancient Temple')" class="card" data-category="attractions"><img src="https://i.pinimg.com/736x/87/f9/95/87f995848f5bfead1f9d5d48859a81bf.jpg" alt="Attraction" ><div class="card-content"><h3>Ancient Temple</h3><p>Historical site with rich culture.</p></div></a>
+
+
+      <a href="#" onclick="openDetails('Mountain View')" class="card" data-category="attractions"><img src="https://www.vizagarakutourpackages.com/wp-content/uploads/2024/01/lambasingi.jpg" alt="Attraction"><div class="card-content"><h3>Mountain View</h3><p>Breathtaking scenery and peace.</p></div></a>
+
+      
+      <a href="#" onclick="openDetails('Grandma\'s Kitchen')" class="card" data-category="food"><img src="https://i.pinimg.com/736x/27/84/1f/27841faf8af1254c73ed5ef18b5d2b5e.jpg" alt="Food"><div class="card-content"><h3>Grandma's Kitchen</h3><p>Authentic home-cooked regional dishes.</p></div></a>
+
+
+      <a href="#" onclick="openDetails('Street Food')" class="card" data-category="food"><img src="https://i.pinimg.com/736x/1c/bc/67/1cbc673baad767ec1ee733be90f54c76.jpg" alt="Food"><div class="card-content"><h3>Street Food</h3><p>Delicious bites from local vendors.</p></div></a>
+
+      
+      <a href="#" onclick="openDetails('Village Festival')" class="card" data-category="gatherings"><img src="https://i.pinimg.com/736x/33/ef/c7/33efc70e67bd2e2d92885c7d4392ec69.jpg" alt="Gathering"><div class="card-content"><h3>Village Festival</h3><p>Celebrate culture and traditions with locals.</p></div></a>
+
+      <a href="#" onclick="openDetails('Cultural Dance')" class="card" data-category="gatherings"><img src="https://i.pinimg.com/736x/46/af/55/46af55a204d9caab72979411904986d1.jpg" alt="Gathering"><div class="card-content"><h3>Cultural Dance</h3><p>Traditional performances and joy.</p></div></a>
+
+    
+      <a href="#" onclick="openDetails('Cozy Homestay')" class="card" data-category="stays"><img src="https://i.pinimg.com/1200x/17/72/ac/1772acd349a77652535ad04584e2b745.jpg" alt="Stay"><div class="card-content"><h3>Cozy Homestay</h3><p>Feel at home with warm hospitality.</p></div></a>
+      <a href="#" onclick="openDetails('Eco Lodge')" class="card" data-category="stays"><img src="https://i.pinimg.com/1200x/3f/c7/18/3fc718153b86313f9f972dfed2163e98.jpg" alt="Stay"><div class="card-content"><h3>Eco Lodge</h3><p>Stay close to nature responsibly.</p></div></a>
+    <a href="#" onclick="openDetails('Artisan Market')" class="card" data-category="Shopping"><img src="https://i.pinimg.com/736x/51/35/8f/51358f621c6fba619c3ccedf2eb3a597.jpg" alt="Shopping"><div class="card-content"><h3>Artisan Market</h3><p>Discover handmade crafts and souvenirs.</p></div></a>
+      <a href="#" onclick="openDetails('Local Bazaar')" class="card" data-category="shopping"><img src="https://i.pinimg.com/736x/c7/73/70/c77370d89d7d47fa93ce86313ad5962c.jpg" alt="Shopping"><div class="card-content"><h3>Local Bazaar</h3><p>Traditional goods and regional specialties.</p></div></a>
+    </section>
+  </main>
+<script>
+  function filterCategory(category) {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      card.style.display = category === 'all' || card.dataset.category === category ? 'block' : 'none';
+    });
+  }
+
+  function filterCards() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      const text = card.innerText.toLowerCase();
+      card.style.display = text.includes(input) ? 'block' : 'none';
+    });
+  }
+
+const cardDetails = {
+  "Hidden Waterfall": `
+    <p>Discover the serenity of the Hidden Waterfall, tucked away in lush greenery. The sound of rushing water and cool mist create a perfect escape from the busy world.</p>
+    <p>This hidden gem is ideal for a quiet picnic or a refreshing swim on hot days. The path leading here is an adventure itself, surrounded by nature’s beauty.</p>
+    <p>Whether you’re a nature lover, photographer, or just someone looking to unwind, this spot offers tranquility at its best.</p>
+  `,
+  "Ancient Temple": `
+    <p>The Ancient Temple stands as a testament to centuries of history and devotion. Its intricate carvings and towering architecture reflect the cultural richness of the region.</p>
+    <p>Visitors are often captivated by the calm atmosphere, the fragrance of incense, and the distant sound of temple bells.</p>
+    <p>It’s not just a place of worship, but also a symbol of heritage and continuity across generations.</p>
+  `,
+  "Artisan Market": `
+    <p>The Artisan Market is a vibrant hub where creativity and tradition meet. As you wander through the colorful stalls, you’ll find handmade crafts that reflect the unique skills and heritage of local artisans.</p>
+    <p>Beyond shopping, you can meet the artisans, watch live demonstrations, and hear the stories behind each creation. Every item carries cultural significance and meaning.</p>
+    <p>The market is alive with music, food, and community spirit — a celebration of tradition and creativity that you won’t forget.</p>
+  `,
+  "Cozy Homestay": `
+    <p>Enjoy the warmth and comfort of the Cozy Homestay, where hospitality feels like family. Each room is designed to provide a blend of modern amenities and rustic charm.</p>
+    <p>Wake up to home-cooked breakfasts, scenic views, and the calming sounds of nature just outside your window.</p>
+    <p>This homestay is perfect for travelers seeking peace, relaxation, and authentic local experiences.</p>
+  `
+  
+};
+
+function openDetails(title, imgUrl, description) {
+  if (!imgUrl || !description) {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      const cardTitle = card.querySelector('h3')?.innerText;
+      if (cardTitle === title) {
+        imgUrl = card.querySelector('img')?.src;
+        description = card.querySelector('p')?.innerText;
+      }
+    });
+  }
+
+  // Use detailed description if available
+  let extraContent = cardDetails[title] 
+    ? cardDetails[title] 
+    : `<p><em>More details about ${title} will be added soon...</em></p>`;
+
+  document.body.innerHTML = `
+    <header style="background:#1f1f1f; padding:12px; text-align:left;">
+      <button style="
+        background:#4CAF50; 
+        color:white; 
+        border:none; 
+        padding:10px 18px; 
+        font-size:15px; 
+        border-radius:4px; 
+        cursor:pointer;" 
+        onclick="location.reload()">← Back to Homepage</button>
+    </header>
+    <img src="${imgUrl}" alt="${title}" style="
+      width:100%; 
+      height:50vh; 
+      object-fit:cover; 
+      display:block;">
+    <div style="padding:40px 20px; text-align:center; color:#000; max-width:800px; margin:auto;">
+      <h1 style="color:#222; font-size:2rem; margin-bottom:20px;">${title}</h1>
+      <p style="color:#333; font-size:1.15rem; line-height:1.6; margin-bottom:25px;">
+        ${description}
+      </p>
+      ${extraContent}
+    </div>
+  `;
+}
+</script>
+</body>
+</html>
